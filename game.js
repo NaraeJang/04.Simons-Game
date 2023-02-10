@@ -1,6 +1,6 @@
 var gamePattern = [];
 
-//Create A New Pattern
+/*Create A New Pattern*/
 var buttonColours = ["red", "blue", "green", "yellow"];
 
 var userClickedPattern = [];
@@ -9,9 +9,7 @@ var level = 0;
 var started = false;
 
 
-//1. Use jQuery to detect when any of the buttons are clicked and trigger a handler function.
-//2. Inside the handler, create a new variable called userChosenColour to store the id of the button that got clicked.
-// --> So if the Green button was clicked, userChosenColour will equal its id which is "green".
+
 $(".btn").click(function () {
 
     var userChosenColor = $(this).attr("id");
@@ -28,7 +26,7 @@ $(".btn").click(function () {
     checkAnswer(userClickedPattern.length - 1);
 });
 
-//1. Use jQuery to detect when a keyboard key has been pressed, when that happens for the first time, call nextSequence().
+
 $(document).keypress(function () {
     console.log("keyboard key has been pressed");
 
@@ -43,8 +41,6 @@ $(document).keypress(function () {
 
 
 
-//2. Inside the new function generate a new random number between 0 and 3,
-//and store it in a variable called randomNumber.
 function nextSequence() {
     userClickedPattern.length = 0;
 
@@ -53,16 +49,10 @@ function nextSequence() {
 
     var randomNumber = Math.floor(Math.random() * 4);
 
-    //3. Create a new variable called randomChosenColour and use the randomNumber 
-    //from step 2 to select a random colour from the buttonColours array.
     var randomChosenColour = buttonColours[randomNumber];
 
-
-    //6. Add the new randomChosenColour generated in step 4 to the end of the gamePattern.
     gamePattern.push(randomChosenColour);
 
-    //1. Use jQuery to select the button with the same id as the randomChosenColour.
-    //2. Use Google/Stackoverflow to figure out how you can use jQuery to animate a flash to the button selected in step 1.
     $("#" + randomChosenColour).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 
     playSound(randomChosenColour);
